@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "XuS4HCdpdiykVy9xyvStkY6L5rKSRwlxPD0dEOlQOORKGzHDA3jmQPsIvaq+5EsDoDeejbEXYGGox96tC8j4gQ==",
+  "success": true,
+  "projectFilePath": "/home/epita/Downloads/given/TP14/FlappIA/FlappIA.csproj",
+  "expectedPackageFiles": [
+    "/home/epita/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.8/microsoft.aspnetcore.app.ref.3.1.8.nupkg.sha512"
+  ],
+  "logs": []
+}

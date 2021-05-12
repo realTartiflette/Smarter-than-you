@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlappIA", "FlappIA\FlappIA.csproj", "{AAFAED00-D2CC-409B-B31E-171A0306B298}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Morpion", "Morpion\Morpion.csproj", "{287A451C-3675-423A-8C46-312E7FEE4CBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMorpion", "TestMorpion\TestMorpion.csproj", "{B50DDDA8-37A5-43E6-9EFB-C8608E33D958}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AAFAED00-D2CC-409B-B31E-171A0306B298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAFAED00-D2CC-409B-B31E-171A0306B298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAFAED00-D2CC-409B-B31E-171A0306B298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAFAED00-D2CC-409B-B31E-171A0306B298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{287A451C-3675-423A-8C46-312E7FEE4CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{287A451C-3675-423A-8C46-312E7FEE4CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{287A451C-3675-423A-8C46-312E7FEE4CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{287A451C-3675-423A-8C46-312E7FEE4CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B50DDDA8-37A5-43E6-9EFB-C8608E33D958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B50DDDA8-37A5-43E6-9EFB-C8608E33D958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B50DDDA8-37A5-43E6-9EFB-C8608E33D958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B50DDDA8-37A5-43E6-9EFB-C8608E33D958}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
