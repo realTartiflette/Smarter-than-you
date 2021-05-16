@@ -10,7 +10,10 @@ namespace tp14
 
         public Generation(int size)
         {
-            throw new NotImplementedException();
+            Birds = new Bird[size];
+            for (int i = 0; i < size; i++)
+                Birds[i] = new Bird();
+            
         }
 
         public Generation(Bird bird)
@@ -34,7 +37,25 @@ namespace tp14
         /// <exception cref="Exception"> If no bird are found, it should never happen </exception>
         private Bird SelectBird(double fitnessSum)
         {
-            throw new NotImplementedException();
+            Random rnd = new Random();
+            Bird myBird = new Bird();
+            bool hasBeenChosen = false;
+            foreach (var bird in Birds)
+            {
+                if (rnd.Next(0, 100) < bird.Score / fitnessSum * 100)
+                {
+                    hasBeenChosen = true;
+                    myBird = bird;
+                    break;
+                }
+            }
+
+            if (!hasBeenChosen)
+            {
+                myBird = GetBestBird();
+            }
+
+            return myBird;
         }
 
         /// <summary>
@@ -42,7 +63,42 @@ namespace tp14
         /// </summary>
         public void NewGen()
         {
-            throw new NotImplementedException();
+            Generation generation = new Generation(64);
+            long fitnessSum = 0;
+            foreach (var bird in Birds)
+                fitnessSum += bird.Score;
+            
+            for (int i = 0; i < 32; i++)
+            {
+                Bird goodBird1 = SelectBird(fitnessSum);
+                Bird goodBird2 = SelectBird(fitnessSum);
+                generation.Birds[i] = goodBird1.Crossover(goodBird2);
+                generation.Birds[i].Mutate();
+            }
+            Sort();
+            for (int i = 0; i < 16; i++)
+            {
+                
+                generation.Birds[32 + i] = Birds[Birds.Length - i - 1];
+                generation.Birds[32 + i].Mutate();
+                
+            }
+            
+            Generation trashGeneration = new Generation(32);
+            fitnessSum = 0;
+            foreach (var bird in trashGeneration.Birds)
+                fitnessSum += bird.Score;
+            for (int i = 0; i < 32; i++)
+                trashGeneration.Birds[i] = Birds[Birds.Length - i - 1];
+            for (int i = 0; i < 16; i++)
+            {
+                Bird goodBird1 = trashGeneration.SelectBird(fitnessSum);
+                Bird goodBird2 = trashGeneration.SelectBird(fitnessSum);
+                generation.Birds[48 + i] = goodBird1.Crossover(goodBird2);
+                generation.Birds[48 + i].Mutate();
+            }
+            
+
         }
 
         public void PrintBirdsScore()

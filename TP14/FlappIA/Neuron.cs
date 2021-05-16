@@ -26,7 +26,13 @@ namespace tp14
         /// <param name="prevSize"> size of the last layer </param>
         public Neurone(int prevSize)
         {
-            throw new NotImplementedException();
+            Random random = new Random();
+            Weights = new double[prevSize];
+            for (int i = 0; i < Weights.Length; i++)
+                Weights[i] = random.Next(-1, 2);
+            
+            Bias = random.Next(-1, 2);
+            Value = 1;
         }
 
         /// <summary>
@@ -36,7 +42,13 @@ namespace tp14
         /// <param name="mutate"> apply mutation </param>
         public Neurone(Neurone neurone, bool mutate)
         {
-            throw new NotImplementedException();
+            Value = 0;
+            Weights = neurone.Weights;
+            Bias = neurone.Bias;
+            
+            if (mutate)
+                Mutate();
+            
         }
 
         /// <summary>
@@ -57,7 +69,12 @@ namespace tp14
         /// <returns> true to mutate, false otherwise </returns>
         private bool ShouldMutate(double probability)
         {
-            throw new NotImplementedException();
+            //a modifier par la suite
+            bool mutate = false;
+            Random rnd = new Random();
+            if (rnd.Next(0, 100) < probability * 100)
+                mutate = true;
+            return mutate;
         }
 
         /// <summary>
@@ -65,7 +82,13 @@ namespace tp14
         /// </summary>
         public void Mutate()
         {
-            throw new NotImplementedException();
+            if (ShouldMutate(0.005))
+                Bias = RandomGaussian();
+            for (int i = 0; i < Weights.Length; i++)
+            {
+                if (ShouldMutate(0.005))
+                    Weights[i] = RandomGaussian();
+            }
         }
 
         /// <summary>
@@ -74,7 +97,13 @@ namespace tp14
         /// <param name="partner"> the partner to be mixed with </param>
         public void Crossover(Neurone partner)
         {
-            throw new NotImplementedException();
+            Random rnd = new Random();
+            for (int i = 0; i < Weights.Length; i++)
+            {
+                if (rnd.Next(0, 2) == 0)
+                    Weights[i] = partner.Weights[i];
+            }
+            //bias not modified
         }
 
         /// <summary>
@@ -83,7 +112,13 @@ namespace tp14
         /// <param name="prevLayer"></param>
         public void FrontProp(Layer prevLayer)
         {
-            throw new NotImplementedException();
+            double value = 0;
+            for (int i = 0; i < prevLayer.Neurones.Length; i++)
+            {
+                value += prevLayer.Neurones[i].Value * Weights[i];
+            }
+
+            Value = Activation(value + Bias);
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 
@@ -24,7 +25,7 @@ namespace Morpion
         
         // display of the game with the numbers corresponding to the boxes
         // the display is shifted to the right in case you wish to display the board of the current game to its left
-        void positions()
+        public void positions()
         {
             if (!Console.IsOutputRedirected)
             {
@@ -65,7 +66,7 @@ namespace Morpion
                 
                 if (board[i] == 'x')
                     x++;
-                if (board[i] == '0')
+                if (board[i] == 'o')
                     o++;
 
                 if (x == 3)
@@ -86,28 +87,19 @@ namespace Morpion
         private int CheckCol()
         {
             int res = 0;
-            int x = 0;
-            int o = 0;
-            for (int i = 0; i < 6; i += 3)
+            for (int i = 0; i < 3; i += 1)
             {
-                if (board[i] == 'x')
-                    x++;
-                if (board[i] == '0')
-                    o++;
-                
-                if (x == 3)
+                if (board[i] == 'x' && board[i + 3] == 'x' && board[i + 6] == 'x')
                 {
                     res = 2;
                     break;
                 }
-
-                if (o == 3)
+                if (board[i] == 'o' && board[i + 3] == 'o' && board[i + 6] == 'o')
                 {
                     res = 1;
                     break;
                 }
             }
-            
             return res;
         }
 
@@ -120,7 +112,7 @@ namespace Morpion
             {
                 if (board[i] == 'x')
                     x++;
-                if (board[i] == '0')
+                if (board[i] == 'o')
                     o++;
                 
                 if (x == 3)
@@ -144,11 +136,11 @@ namespace Morpion
             int res = 0;
             int x = 0;
             int o = 0;
-            for (int i = 0; i < 7; i += 2)
+            for (int i = 2; i < 7; i += 2)
             {
                 if (board[i] == 'x')
                     x++;
-                if (board[i] == '0')
+                if (board[i] == 'o')
                     o++;
                 
                 if (x == 3)
@@ -174,8 +166,17 @@ namespace Morpion
                 res = b;
             return res;
         }
+
+        public int Min(int a, int b)
+        {
+            int res = a;
+            if (b < res)
+                res = b;
+            return res;
+        }
         public int stop()
         {
+            
             int res = 0;
             res = Max(res, CheckLine());
             res = Max(res, CheckCol());
@@ -199,13 +200,13 @@ namespace Morpion
             
         }
 
-        public int FindAllBlank()
+        private List<int> FindAllBlank()
         {
-            int res = 0;
-            foreach (var ele in board)
+            List<int> res = new List<int>();
+            for (int i = 0; i < 9; i++)
             {
-                if (ele == '_')
-                    res++;
+                if (board[i] == '_')
+                    res.Add(i);
             }
 
             return res;
@@ -213,19 +214,128 @@ namespace Morpion
 
         public int EvaluateBoard()
         {
-            throw new NotImplementedException();
+            int gameState = stop();
+            int res = 0;
+            if (gameState == 1)
+                res = -1000 + (9 - FindAllBlank().Count);
+            else if (gameState == 2)
+                res = 1000 - (9 - FindAllBlank().Count);
+            else
+            {//ligne
+                for (int i = 0; i < 9; i++)
+                {
+                    if (board[i] == 'o' && (i + 1) % 3 != 0)
+                    {
+                        if (i + 1 < 9 && board[i + 1] == 'o')
+                            res--;
+                        else if (i + 1 < 9 && board[i + 1] == '_')
+                        {
+                            if (i + 2 < 9 && board[i + 2] == 'o')
+                                res--;
+                        }
+                    }
+                    else if (board[i] == 'x' && (i + 1) % 3 != 0)
+                    {
+                        if (i + 1 < 9 && board[i + 1] == 'x')
+                            res++;
+                        else if (i + 1 < 9 && board[i + 1] == '_')
+                        {
+                            if (i + 2 < 9 && board[i + 2] == 'x')
+                                res++;
+                        }
+                    }
+                }
+                //col
+                for (int i = 0; i < 6; i ++)
+                {
+                    if (board[i] == 'o')
+                    {
+                        if (i + 3 < 9 && board[i + 3] == 'o')
+                            res--;
+                        else if (i + 3 < 9 && board[i + 3] == '_')
+                        {
+                            if (i + 6 < 9 && board[i + 6] == 'o')
+                                res--;
+                        }
+                    }
+                    else if (board[i] == 'x')
+                    {
+                        if (i + 3 < 9 && board[i + 3] == 'x')
+                            res++;
+                        else if (i + 3 < 9 && board[i + 3] == '_')
+                        {
+                            if (i + 6 < 9 && board[i + 6] == 'x')
+                                res++;
+                        }
+                    }
+                }
+                //diago
+                if (board[0] == 'o' && board[4] == 'o' || board[2] == 'o' && board[4] == 'o' ||
+                    board[6] == 'o' && board[4] == 'o' || board[8] == 'o' && board[4] == 'o')
+                    res--;
+                else if (board[0] == 'o' && board[4] == '_' && board[8] == 'o' ||
+                         board[2] == 'o' && board[4] == '_' && board[6] == 'o')
+                    res--;
+                if (board[0] == 'x' && board[4] == 'x' || board[2] == 'x' && board[4] == 'x' ||
+                    board[6] == 'x' && board[4] == 'x' || board[8] == 'x' && board[4] == 'x')
+                    res++;
+                else if (board[0] == 'x' && board[4] == '_' && board[8] == 'x' ||
+                         board[2] == 'x' && board[4] == '_' && board[6] == 'x')
+                    res++;
+            }
+
+            return res;
+
         }
-        public int IAPlay(Game game, bool maximizingPlayer)
+        public (int, int) IAPlay(Game game, bool maximizingIA, uint cdepth)
         {
-            if (game.depth == 0 || game.FindAllBlank() < 0)
-                return game.EvaluateBoard();
-            throw new NotImplementedException();
+            int bestMove = -1;
+            if (cdepth == 0 || game.FindAllBlank().Count == 0 || game.stop() != 0)
+                return (bestMove, game.EvaluateBoard());
+            int value;
+            if (maximizingIA)
+            {
+                value = -1000;
+                foreach (var blank in FindAllBlank())
+                {
+                    /*Game copyGame = load_game(game.state(), game.depth);
+                    copyGame.depth -= 1;
+                    copyGame.board[blank] = 'x';*/
+                    //cdepth -= 1;
+                    game.board[blank] = 'x';
+                    (_, int play) = IAPlay(game, false, cdepth - 1);
+                    game.board[blank] = '_';
+                    cdepth = game.depth;
+                    if (play > value)
+                    {
+                        value = play;
+                        bestMove = blank;
+                    }
+                }
+            }
+            else
+            {
+                value = 1000;
+                foreach (var blank in FindAllBlank())
+                {
+                    /*Game copyGame = load_game(game.state(), game.depth);
+                    copyGame.depth -= 1;
+                    copyGame.board[blank] = 'o';*/
+                    //cdepth -= 1;
+                    game.board[blank] = 'o';
+                    (_, int play) = IAPlay(game, true, cdepth - 1);
+                    cdepth = game.depth;
+                    game.board[blank] = '_';
+                    value = Min(value, play);
+                }
+            }
+            return (bestMove, value);
+                
         }
         // start a game turn
         public void play()
         {
             bool isPlayed = false;
-
             while (!isPlayed)
             {
                 Console.WriteLine("Time to play: ");
@@ -246,7 +356,9 @@ namespace Morpion
                 else
                     Console.Error.WriteLine("You must play a number between 0 and 8 inclusive.");
             }
-            //IAPlay();
+            (int move, _) = IAPlay(this, true, this.depth);
+            if (move != -1)
+                board[move] = 'x';
         }
         
         public string state()
@@ -257,6 +369,30 @@ namespace Morpion
                 res += board[i];
             }
             return res;
+        }
+        
+        public void PrintBoard()
+        {
+            if (!Console.IsOutputRedirected)
+            {
+                int y = 0;
+                int cpt = 0;
+                Console.SetCursorPosition(20, y++);
+                Console.WriteLine(" ___________");
+                for (int i = 0; i < 3; i++)
+                {
+                    Console.SetCursorPosition(20, y++);
+                    //Console.WriteLine("| " + board[cpt].ToString() + " | " + board[cpt++].ToString() + " | " + board[cpt++].ToString() +  " |");
+                    Console.Write("| " + board[cpt]);
+                    cpt++;
+                    Console.Write(" | " + board[cpt]);
+                    cpt++;
+                    Console.Write(" | " + board[cpt] + " |");
+                    cpt++;
+                    Console.SetCursorPosition(20, y++);
+                    Console.WriteLine("|___________|");
+                }
+            }
         }
     }
 }

@@ -116,9 +116,9 @@ namespace tp14
         /// <summary>
         /// Mutate the bird
         /// </summary>
-        public void Mutate()
+        public void Mutate() //peut etre faire plus
         {
-            throw new NotImplementedException();
+            NeuralNetwork.Mutate();
         }
 
         /// <summary>
@@ -128,8 +128,11 @@ namespace tp14
         /// <returns></returns>
         public Bird Crossover(Bird partner)
         {
-            throw new NotImplementedException();
-
+            
+            Bird myBird = new Bird(this, false);
+            myBird.NeuralNetwork.Crossover(partner.NeuralNetwork);
+            return myBird;
+            
         }
 
         /// <summary>

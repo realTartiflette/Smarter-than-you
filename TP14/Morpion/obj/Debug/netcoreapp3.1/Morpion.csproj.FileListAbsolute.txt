@@ -1,0 +1,13 @@
+C:\Users\thoma\Smarter-than-you\TP14\Morpion\bin\Debug\netcoreapp3.1\Morpion.exe
+C:\Users\thoma\Smarter-than-you\TP14\Morpion\bin\Debug\netcoreapp3.1\Morpion.deps.json
+C:\Users\thoma\Smarter-than-you\TP14\Morpion\bin\Debug\netcoreapp3.1\Morpion.runtimeconfig.json
+C:\Users\thoma\Smarter-than-you\TP14\Morpion\bin\Debug\netcoreapp3.1\Morpion.runtimeconfig.dev.json
+C:\Users\thoma\Smarter-than-you\TP14\Morpion\bin\Debug\netcoreapp3.1\Morpion.dll
+C:\Users\thoma\Smarter-than-you\TP14\Morpion\bin\Debug\netcoreapp3.1\Morpion.pdb
+C:\Users\thoma\Smarter-than-you\TP14\Morpion\obj\Debug\netcoreapp3.1\Morpion.csprojAssemblyReference.cache
+C:\Users\thoma\Smarter-than-you\TP14\Morpion\obj\Debug\netcoreapp3.1\Morpion.AssemblyInfoInputs.cache
+C:\Users\thoma\Smarter-than-you\TP14\Morpion\obj\Debug\netcoreapp3.1\Morpion.AssemblyInfo.cs
+C:\Users\thoma\Smarter-than-you\TP14\Morpion\obj\Debug\netcoreapp3.1\Morpion.csproj.CoreCompileInputs.cache
+C:\Users\thoma\Smarter-than-you\TP14\Morpion\obj\Debug\netcoreapp3.1\Morpion.dll
+C:\Users\thoma\Smarter-than-you\TP14\Morpion\obj\Debug\netcoreapp3.1\Morpion.pdb
+C:\Users\thoma\Smarter-than-you\TP14\Morpion\obj\Debug\netcoreapp3.1\Morpion.genruntimeconfig.cache

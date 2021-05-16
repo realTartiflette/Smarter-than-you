@@ -13,7 +13,10 @@ namespace tp14
         /// <param name="prevSize"> Dimension of the previous layer </param>
         public Layer(int size, int prevSize)
         {
-            throw new NotImplementedException();
+            Neurones = new Neurone[size];
+            for (int i = 0; i < size; i++)
+                Neurones[i] = new Neurone(prevSize);
+            
         }
 
         /// <summary>
@@ -23,7 +26,12 @@ namespace tp14
         /// <param name="mutate"> Apply mutation </param>
         public Layer(Layer layer, bool mutate)
         {
-            throw new NotImplementedException();
+            Neurones = new Neurone[layer.Neurones.Length];
+            for (int i = 0; i < layer.Neurones.Length; i++)
+                Neurones[i] = layer.Neurones[i];
+            
+            if (mutate)
+                Mutate();
         }
 
         /// <summary>
@@ -31,7 +39,8 @@ namespace tp14
         /// </summary>
         public void Mutate()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Neurones.Length; i++)
+                Neurones[i].Mutate();
         }
 
         /// <summary>
@@ -40,7 +49,9 @@ namespace tp14
         /// <param name="partner"></param>
         public void Crossover(Layer partner)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Neurones.Length; i++)
+                Neurones[i].Crossover(partner.Neurones[i]);
+            
         }
 
         /// <summary>
@@ -49,7 +60,8 @@ namespace tp14
         /// <param name="prevLayer"> Dimension of the previous layer</param>
         public void FrontProp(Layer prevLayer)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Neurones.Length; i++)
+                Neurones[i].FrontProp(prevLayer);
         }
     }
 }

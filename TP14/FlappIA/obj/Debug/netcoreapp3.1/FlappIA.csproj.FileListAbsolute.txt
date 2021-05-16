@@ -1,0 +1,13 @@
+C:\Users\thoma\Smarter-than-you\TP14\FlappIA\bin\Debug\netcoreapp3.1\FlappIA.exe
+C:\Users\thoma\Smarter-than-you\TP14\FlappIA\bin\Debug\netcoreapp3.1\FlappIA.deps.json
+C:\Users\thoma\Smarter-than-you\TP14\FlappIA\bin\Debug\netcoreapp3.1\FlappIA.runtimeconfig.json
+C:\Users\thoma\Smarter-than-you\TP14\FlappIA\bin\Debug\netcoreapp3.1\FlappIA.runtimeconfig.dev.json
+C:\Users\thoma\Smarter-than-you\TP14\FlappIA\bin\Debug\netcoreapp3.1\FlappIA.dll
+C:\Users\thoma\Smarter-than-you\TP14\FlappIA\bin\Debug\netcoreapp3.1\FlappIA.pdb
+C:\Users\thoma\Smarter-than-you\TP14\FlappIA\obj\Debug\netcoreapp3.1\FlappIA.csprojAssemblyReference.cache
+C:\Users\thoma\Smarter-than-you\TP14\FlappIA\obj\Debug\netcoreapp3.1\FlappIA.AssemblyInfoInputs.cache
+C:\Users\thoma\Smarter-than-you\TP14\FlappIA\obj\Debug\netcoreapp3.1\FlappIA.AssemblyInfo.cs
+C:\Users\thoma\Smarter-than-you\TP14\FlappIA\obj\Debug\netcoreapp3.1\FlappIA.csproj.CoreCompileInputs.cache
+C:\Users\thoma\Smarter-than-you\TP14\FlappIA\obj\Debug\netcoreapp3.1\FlappIA.dll
+C:\Users\thoma\Smarter-than-you\TP14\FlappIA\obj\Debug\netcoreapp3.1\FlappIA.pdb
+C:\Users\thoma\Smarter-than-you\TP14\FlappIA\obj\Debug\netcoreapp3.1\FlappIA.genruntimeconfig.cache

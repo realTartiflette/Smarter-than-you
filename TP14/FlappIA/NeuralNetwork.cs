@@ -13,7 +13,10 @@ namespace tp14
         /// <param name="layerDimension"> Dimension of the neural network </param>
         public NeuralNetwork(int[] layerDimension)
         {
-            throw new NotImplementedException();
+            Layers = new Layer[layerDimension.Length];
+            Layers[0] = new Layer(layerDimension[0], 0);
+            for (int i = 1; i < Layers.Length; i++)
+                Layers[i] = new Layer(layerDimension[i], layerDimension[i - 1]);
         }
 
         /// <summary>
@@ -23,16 +26,19 @@ namespace tp14
         /// <param name="mutate"> apply mutation </param>
         public NeuralNetwork(NeuralNetwork neuralNetwork, bool mutate)
         {
-            throw new NotImplementedException();
+            Layers = neuralNetwork.Layers;
+            if (mutate)
+                Mutate();
         }
 
         /// <summary>
         /// Feed the neural network with the current bird's state
         /// </summary>
         /// <param name="input"></param>
-        public void Feed(double[] input)
+        public void Feed(double[] input) // pas compris
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Layers[0].Neurones.Length; i++)
+                Layers[0].Neurones[i].Value = input[i];
         }
 
         /// <summary>
@@ -40,7 +46,8 @@ namespace tp14
         /// </summary>
         public void FrontProp()
         {
-            throw new NotImplementedException();
+            for (int i = 1; i < Layers.Length; i++)
+                Layers[i].FrontProp(Layers[i-1]);
         }
 
         /// <summary>
@@ -49,7 +56,8 @@ namespace tp14
         /// <param name="partner"> the partner to be mixed with </param>
         public void Crossover(NeuralNetwork partner)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Layers.Length; i++)
+                Layers[i].Crossover(partner.Layers[i]);
         }
 
         /// <summary>
@@ -57,7 +65,8 @@ namespace tp14
         /// </summary>
         public void Mutate()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Layers.Length; i++)
+                Layers[i].Mutate();
         }
 
         /// <summary>
